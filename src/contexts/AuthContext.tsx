@@ -28,9 +28,38 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
+  // const login = async (email: string, password: string): Promise<boolean> => {
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/auth/login", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ email, password }),
+  //     });
+
+  //     if (!response.ok) {
+  //       console.error("Login failed:", response.status, response.statusText);
+  //       return false;
+  //     }
+
+  //     const data = await response.json();
+  //     setUser(data.user);
+  //     setToken(data.token);
+  //     localStorage.setItem("jk_autos_token", data.token);
+  //     localStorage.setItem("jk_autos_user", JSON.stringify(data.user));
+  //     return true;
+  //   } catch (error) {
+  //     console.error("An error occurred during login:", error);
+  //     return false;
+  //   }
+  // };
+
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +72,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         return false;
       }
 
-      const data = await response.json(); // Assuming the API returns { token: string, user: User }
+      const data = await response.json();
       setUser(data.user);
       setToken(data.token);
       localStorage.setItem("jk_autos_token", data.token);
@@ -74,7 +103,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
     } catch (error) {
       console.error("Failed to parse user data from localStorage", error);
-      logout(); // Clear corrupted data
+      logout();
     }
     setLoading(false);
   }, []);
