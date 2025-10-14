@@ -25,12 +25,14 @@ const CarModal: React.FC<CarModalProps> = ({
     engine: "",
     fuelType: "Gasoline",
     transmission: "Automatic",
-    condition: "Foreign Used",
+    condition: "foreign used",
     description: "",
     location: "",
     features: [] as string[],
     status: "available" as "available" | "sold" | "pending",
   });
+
+
   const [newFeature, setNewFeature] = useState("");
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [existingImageUrls, setExistingImageUrls] = useState<string[]>([]);
@@ -68,7 +70,7 @@ const CarModal: React.FC<CarModalProps> = ({
         engine: "",
         fuelType: "Gasoline",
         transmission: "Automatic",
-        condition: "Foreign Used",
+        condition: "foreign used",
         description: "",
         location: "",
         status: "available",
@@ -80,7 +82,7 @@ const CarModal: React.FC<CarModalProps> = ({
     }
   }, [car]);
 
-  // Clean up image previews on unmount to prevent memory leaks
+
   useEffect(() => {
     return () => {
       imagePreviews.forEach((preview) => URL.revokeObjectURL(preview));
@@ -129,7 +131,6 @@ const CarModal: React.FC<CarModalProps> = ({
   };
 
   const removeNewImage = (indexToRemove: number) => {
- 
     URL.revokeObjectURL(imagePreviews[indexToRemove]);
 
     setImageFiles((prevFiles) =>
@@ -144,14 +145,15 @@ const CarModal: React.FC<CarModalProps> = ({
     e.preventDefault();
     const submissionData = new FormData();
 
-
-    for (const key in formData) {
-      const value = (formData as any)[key];
-      if (value !== undefined && value !== null && value !== "") {
+    Object.entries(formData).forEach(([key, value]) => {
+      if (key === "features" && Array.isArray(value)) {
+        value.forEach((feature) =>
+          submissionData.append("features[]", feature)
+        );
+      } else if (value !== undefined && value !== null && value !== "") {
         submissionData.append(key, String(value));
-      } else {
       }
-    }
+    });
 
     imageFiles.forEach((file, _) => {
       submissionData.append("images", file);

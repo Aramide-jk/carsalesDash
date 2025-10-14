@@ -3,12 +3,18 @@ import type {
   InspectionBooking,
   Purchase,
   CarAPIResponse,
+  InspectionAPIResponse,
+  SellRequest,
 } from "../types";
 
-// const API_BASE_URL = "https://carsalesbackend-production.up.railway.app/api";
 const API_BASE_URL =
-  import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-console.log(API_BASE_URL);
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_LOCAL_URL || "http://localhost:5000"
+    : import.meta.env.VITE_BACKEND_URL ||
+      "https://carsalesbackend-production.up.railway.app";
+
+console.log("🔍 Current Mode:", import.meta.env.MODE);
+console.log("🔍 API Base URL:", API_BASE_URL);
 
 const apiRequest = async <T>(
   endpoint: string,
@@ -71,7 +77,7 @@ export const deleteCarAPI = (id: string, token: string | null) =>
 
 // --- Inspection Management ---
 export const getInspectionsAPI = (token: string | null) =>
-  apiRequest<InspectionBooking[]>("/inspections", "GET", null, token);
+  apiRequest<InspectionAPIResponse>("/inspections", "GET", null, token);
 
 export const updateInspectionStatusAPI = (
   id: string,
@@ -85,14 +91,22 @@ export const updateInspectionStatusAPI = (
     token
   );
 
-export const getSellRequestsAPI = (token: string | null) =>
-  apiRequest<any[]>("/sell-requests", "GET", null, token);
+export const getSellRequestsAPI = (
+  token: string | null
+): Promise<SellRequest[]> =>
+  apiRequest<SellRequest[]>("/sell-requests", "GET", null, token);
 
 export const updateSellRequestStatusAPI = (
   id: string,
   status: "pending" | "approved" | "rejected",
   token: string | null
-) => apiRequest<any>(`/admin/sell-requests/${id}`, "PATCH", { status }, token);
+) =>
+  apiRequest<SellRequest>(
+    `/admin/sell-requests/${id}`,
+    "PATCH",
+    { status },
+    token
+  );
 
 // --- Purchase Management ---
 export const getPurchasesAPI = (token: string | null) =>

@@ -22,20 +22,18 @@ export interface Car {
 
 export interface InspectionBooking {
   _id: string;
-  userId: string;
+  // userId: string;
   userName: string;
   userEmail: string;
   userPhone: string;
-  carId: string;
   carBrand: string;
   carModel: string;
   carYear: string;
   location: string;
-  note: string;
   inspectionDate: string;
   inspectionTime: string;
+  note: string;
   status: "pending" | "confirmed" | "completed" | "cancelled";
-  createdAt: string;
 }
 
 export interface SellRequest {
@@ -83,6 +81,12 @@ export interface CarAPIResponse {
   success: boolean;
   count: number;
   data: Car[];
+}
+
+export interface InspectionAPIResponse {
+  success: boolean;
+  count: number;
+  data: InspectionBooking[];
 }
 
 export interface SingleCarAPIResponse {

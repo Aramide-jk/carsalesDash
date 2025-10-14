@@ -35,17 +35,8 @@ const SellRequests: React.FC = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("jk_autos_token");
-
         const response = await getSellRequestsAPI(token);
-
-        if (Array.isArray(response)) {
-          setSellRequests(response);
-        } else if (response && Array.isArray(response)) {
-          setSellRequests(response);
-        } else {
-          console.error("Unexpected response format:", response);
-          setSellRequests([]);
-        }
+        setSellRequests(response);
       } catch (err) {
         console.error("Failed to fetch sell requests:", err);
         setError("Failed to fetch sell requests");
@@ -128,6 +119,10 @@ const SellRequests: React.FC = () => {
       </div>
     );
   }
+  // const formatStatus = (status?: string) => {
+  //   if (!status) return "N/A";
+  //   return status.charAt(0).toUpperCase() + status.slice(1);
+  // };
 
   return (
     <div className="space-y-6">
@@ -240,8 +235,8 @@ const SellRequests: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {filteredRequests.map((request) => (
-                <tr key={request._id} className="hover:bg-gray-50">
+              {filteredRequests.map((request, index) => (
+                <tr key={index} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
@@ -311,8 +306,10 @@ const SellRequests: React.FC = () => {
                       className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(
                         request.status
                       )}`}>
-                      {request.status.charAt(0).toUpperCase() +
-                        request.status.slice(1)}
+                      {request.status
+                        ? request.status.charAt(0).toUpperCase() +
+                          request.status.slice(1)
+                        : "N/A"}
                     </span>
                   </td>
                   <td className="px-6 py-4">

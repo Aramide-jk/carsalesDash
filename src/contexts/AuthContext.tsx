@@ -55,7 +55,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   //   }
   // };
 
-  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
+  const API_BASE_URL =
+    import.meta.env.MODE === "development"
+      ? import.meta.env.VITE_LOCAL_URL || "http://localhost:5000"
+      : import.meta.env.VITE_BACKEND_URL ||
+        "https://carsalesbackend-production.up.railway.app";
 
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
