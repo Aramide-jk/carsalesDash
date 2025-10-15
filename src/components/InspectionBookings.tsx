@@ -47,6 +47,7 @@ const InspectionBookings: React.FC = () => {
         inspectionTime: item.time,
         note: item.note,
         status: item.status,
+        createdAt: item.createdAt,
       }));
 
       console.log(normalized);

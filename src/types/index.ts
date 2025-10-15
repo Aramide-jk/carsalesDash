@@ -22,10 +22,12 @@ export interface Car {
 
 export interface InspectionBooking {
   _id: string;
-  // userId: string;
+  userId?: string;
   userName: string;
   userEmail: string;
   userPhone: string;
+
+  carId?: string;
   carBrand: string;
   carModel: string;
   carYear: string;
@@ -34,6 +36,10 @@ export interface InspectionBooking {
   inspectionTime: string;
   note: string;
   status: "pending" | "confirmed" | "completed" | "cancelled";
+  createdAt: string;
+
+
+  
 }
 
 export interface SellRequest {
