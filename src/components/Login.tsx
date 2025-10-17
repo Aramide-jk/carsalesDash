@@ -35,7 +35,7 @@ const Login: React.FC = () => {
               <Car className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              JK_Autos Admin
+              Sk_Leeno Admin
             </h1>
             <p className="text-gray-600">Sign in to access the dashboard</p>
           </div>
@@ -55,7 +55,7 @@ const Login: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  placeholder="admin@jkautos.com"
+                  placeholder="admin@skleeno.com"
                   required
                 />
               </div>
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
 
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <p className="text-xs text-gray-600 mb-2">Demo Credentials:</p>
-            <p className="text-xs text-gray-500">Email: admin@jkautos.com</p>
+            <p className="text-xs text-gray-500">Email: admin@skleeno.com</p>
             <p className="text-xs text-gray-500">Password: admin123</p>
           </div>
         </div>

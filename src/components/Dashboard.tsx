@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import CarManagement from "./CarManagement";
 import InspectionBookings from "./InspectionBookings";
-import Purchases from "./Purchases";
-import SellRequests from "./SellRequests";
+// import Purchases from "./Purchases";
+// import SellRequests from "./SellRequests";
 
 const Dashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState("cars");
@@ -15,10 +15,10 @@ const Dashboard: React.FC = () => {
         return <CarManagement />;
       case "inspections":
         return <InspectionBookings />;
-      case "purchases":
-        return <Purchases />;
-      case "sell-requests":
-        return <SellRequests />;
+      // case "purchases":
+      // return <Purchases />;
+      // case "sell-requests":
+      // return <SellRequests />;
       default:
         return <CarManagement />;
     }

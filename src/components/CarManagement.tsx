@@ -89,12 +89,12 @@ const CarManagement: React.FC = () => {
       setError(null);
 
       if (editingCar?._id) {
-        // 🚀 Wait for backend update to complete and get updated car
+        
         const updatedCar = await updateCarAPI(editingCar._id, carData, token);
 
         console.log("Updated car from backend:", updatedCar);
 
-        // 🧠 Now update the local UI using backend's real updated data
+      
         setCars((prevCars) =>
           prevCars.map((car) => (car._id === editingCar._id ? updatedCar : car))
         );

@@ -34,7 +34,7 @@ const SellRequests: React.FC = () => {
     const fetchSellRequests = async () => {
       try {
         setLoading(true);
-        const token = localStorage.getItem("jk_autos_token");
+        const token = localStorage.getItem("Sk_Leeno_token");
         const response = await getSellRequestsAPI(token);
         setSellRequests(response);
       } catch (err) {
@@ -69,7 +69,7 @@ const SellRequests: React.FC = () => {
     newStatus: "pending" | "approved" | "rejected"
   ) => {
     try {
-      const token = localStorage.getItem("jk_autos_token");
+      const token = localStorage.getItem("Sk_Leeno_token");
       const updatedRequest = await updateSellRequestStatusAPI(
         requestId,
         newStatus,

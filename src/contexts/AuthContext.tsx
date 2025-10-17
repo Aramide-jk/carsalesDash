@@ -46,8 +46,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   //     const data = await response.json();
   //     setUser(data.user);
   //     setToken(data.token);
-  //     localStorage.setItem("jk_autos_token", data.token);
-  //     localStorage.setItem("jk_autos_user", JSON.stringify(data.user));
+  //     localStorage.setItem("Sk_Leeno_token", data.token);
+  //     localStorage.setItem("Sk_Leeno_user", JSON.stringify(data.user));
   //     return true;
   //   } catch (error) {
   //     console.error("An error occurred during login:", error);
@@ -79,8 +79,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const data = await response.json();
       setUser(data.user);
       setToken(data.token);
-      localStorage.setItem("jk_autos_token", data.token);
-      localStorage.setItem("jk_autos_user", JSON.stringify(data.user));
+      localStorage.setItem("Sk_Leeno_token", data.token);
+      localStorage.setItem("Sk_Leeno_user", JSON.stringify(data.user));
       return true;
     } catch (error) {
       console.error("An error occurred during login:", error);
@@ -91,15 +91,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem("jk_autos_user");
-    localStorage.removeItem("jk_autos_token");
+    localStorage.removeItem("Sk_Leeno_user");
+    localStorage.removeItem("Sk_Leeno_token");
   };
 
   // Check for existing session on mount
   useEffect(() => {
     try {
-      const savedUser = localStorage.getItem("jk_autos_user");
-      const savedToken = localStorage.getItem("jk_autos_token");
+      const savedUser = localStorage.getItem("Sk_Leeno_user");
+      const savedToken = localStorage.getItem("Sk_Leeno_token");
 
       if (savedUser && savedToken) {
         setUser(JSON.parse(savedUser));

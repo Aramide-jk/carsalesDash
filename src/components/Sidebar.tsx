@@ -2,11 +2,11 @@ import React from "react";
 import {
   Car,
   Calendar,
-  ShoppingCart,
+  // ShoppingCart,
   LogOut,
   Menu,
   X,
-  FileText,
+  // FileText,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -28,8 +28,8 @@ const Sidebar: React.FC<SidebarProps> = ({
   const menuItems = [
     { id: "cars", label: "Car Management", icon: Car },
     { id: "inspections", label: "Inspections", icon: Calendar },
-    { id: "purchases", label: "Purchases", icon: ShoppingCart },
-    { id: "sell-requests", label: "Sell Requests", icon: FileText },
+    // { id: "purchases", label: "Purchases", icon: ShoppingCart },
+    // { id: "sell-requests", label: "Sell Requests", icon: FileText },
   ];
 
   const handleMenuClick = (id: string) => {
@@ -77,7 +77,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 <Car className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">JK_Autos</h1>
+                <h1 className="text-xl font-bold text-gray-900">Sk_Leeno</h1>
                 <p className="text-sm text-gray-500">Admin Dashboard</p>
               </div>
             </div>
